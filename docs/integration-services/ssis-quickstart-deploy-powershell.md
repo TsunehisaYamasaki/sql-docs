@@ -114,7 +114,10 @@ Write-Host "Deploying " $ProjectName " project ..."
 
 # Read the project file and deploy it
 [byte[]] $projectFile = [System.IO.File]::ReadAllBytes($ProjectFilePath)
-$folder.DeployProject($ProjectName, $projectFile)
+$operation = $folder.DeployProject($ProjectName, $projectFile)
+# If you want to print operation messages in console, you can remove $operation. 
+# but the deployment of project would take much time if operation_messages_xxx table on SSISDB contais many records.
+#$folder.DeployProject($ProjectName, $projectFile)
 
 Write-Host "Done."
 ```
